@@ -1,0 +1,33 @@
+<?php
+session_start();
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='/CourierBD/assets/bootstrap/css/bootstrap.min.css'">
+    <link rel=" stylesheet" href='/CourierBD/assets/css/style.css'>
+    <link rel="stylesheet" href='/CourierBD/assets/font-awesome/css/font-awesome.min.css'>
+
+    <title>CourierBD</title>
+    <link rel="shortcut icon" href=".CourierBD/assets/img/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+    <?php include 'include/header.php' ?>
+    <div class="container my-5 vh-100">
+      <h3>Notice Board</h3>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo maiores ullam corrupti exercitationem consectetur perspiciatis consequatur tenetur, tempore ipsa incidunt sint inventore eos voluptates voluptatum numquam qui labore cum reiciendis a quos. Debitis fugit eum maxime nesciunt beatae quasi asperiores saepe illo delectus. Repellendus id doloremque voluptates esse accusantium labore earum quidem possimus odit voluptate non ullam tempora corporis cupiditate, dignissimos explicabo qui ipsum aut adipisci consequatur inventore officiis minus cumque libero? Consequatur mollitia molestias obcaecati odit dolores debitis vel explicabo ipsum ipsam non facilis dicta quam incidunt dolorem voluptate at asperiores libero nihil voluptatum neque, corrupti perspiciatis veniam blanditiis!</p>
+    </div>
+    <?php include 'include/footer.php' ?>
+    <!--  JS Files -->
+    <script src='/CourierBD/assets/bootstrap/js/bootstrap.bundle.js'></script>
+    <script src='/CourierBD/assets/js/app.js'></script>
+</body>
+
+</html>

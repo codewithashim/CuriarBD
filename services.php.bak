@@ -1,0 +1,79 @@
+<?php
+session_start();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='/CourierBD/assets/bootstrap/css/bootstrap.min.css'>
+    <link rel=" stylesheet" href='/CourierBD/assets/css/style.css'>
+    <link rel="stylesheet" href='/CourierBD/assets/font-awesome/css/font-awesome.min.css'>
+
+    <title>CourierBD</title>
+    <link rel="shortcut icon" href=".CourierBD/assets/img/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+    <?php include 'include/header.php' ?>
+    <br><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-9">
+      <h4 class="bg-dark pt-1 pb-2 text-center text-light" style="">All Product</h4>
+             <br>
+            <div class="row">
+            <?php 
+             include 'db/dbconnect.php';
+             $product_query = "SELECT * FROM products ORDER BY id DESC";
+              $query_run = mysqli_query($conn, $product_query);
+              while($product =  mysqli_fetch_assoc($query_run)){?>
+
+               <div class="col-lg-4">
+
+               <div class="card mb-2" style="box-shadow:3px 3px 3px black;">
+                  <img class="card-img-top" src="<?php echo $product['image'] ?>" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title"><?php echo $product['title'] ?></h5>
+                    <p class="card-text "><b>Price:</b> <?php echo $product['price'] ?>BDT</p>
+                    <hp class="card-title">Size: <?php echo $product['size'] ?>piece</hp>
+                     <p class="card-title">Height: <?php echo $product['length'] ?>cm</p>
+                        <p class="card-title">Width: <?php echo $product['width'] ?>cm</p>
+                        <p class="card-title">Category:<?php echo $product['category'] ?></p>
+                  </div>
+            
+                  <div class="card-body">
+                <?php $id=$product['id'] ?>
+                   <a href="text-align: center; view-product.php?id=<?php echo $id; ?>" class="btn btn-dark">View</a>
+
+                  </div>
+                </div>
+
+               </div>
+
+              
+            <?php } ?>
+             
+            </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+    <?php include 'include/footer.php' ?>
+    <!--  JS Files -->
+    <script src='/CourierBD/assets/bootstrap/js/bootstrap.bundle.js'></script>
+    <script src='/CourierBD/assets/js/app.js'></script>
+</body>
+
+</html>

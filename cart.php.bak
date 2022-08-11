@@ -1,0 +1,122 @@
+<?php
+session_start();
+
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='/CourierBD/assets/bootstrap/css/bootstrap.min.css'">
+    <link rel=" stylesheet" href='/CourierBD/assets/css/style.css'>
+    <link rel="stylesheet" href='/CourierBD/assets/font-awesome/css/font-awesome.min.css'>
+
+    <title>CourierBD</title>
+    <link rel="shortcut icon" href=".CourierBD/assets/img/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+    <?php
+    include 'db/dbconnect.php';
+
+
+    include 'include/header.php';
+    $price = 56600;
+    $UserID =  $_SESSION["UserID"];
+
+
+    ?>
+
+    <div class="container my-5">
+        <h4 class="text-center my-3">Order Summary</h4>
+
+        <div class="row g-3">
+
+            <?php
+            $sql =  "SELECT * FROM `orders` WHERE UserID ='$UserID' AND `payment`='pending'";
+            $result = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_assoc($result)) {
+                $OrderID    = $row['OrderID'];
+                $status  = $row['status'];
+                $size  = $row['size'];
+                $price  = $row['price'];
+
+            ?>
+
+                <div class="col-md-10 col-lg-7 col-11 mx-auto shadow-lg p-3 bg-white rounded">
+                    <div class="card ">
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                            Order ID
+                                            <span><?php echo $OrderID ?></span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                                            Product status
+                                            <span><?php echo $status ?></span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                                            Product size
+                                            <span><?php echo $size ?></span>
+                                        </li>
+
+                                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 ">
+                                            <div>
+                                                <strong>Price</strong>
+                                            </div>
+                                            <span><strong><?php echo $price ?> BDT</strong></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                                    <a href="checkout.php?price=<?php echo $price ?>&OrderID=<?php echo $OrderID ?>" class="btn btn-success btn-sm px-3">
+                                        Checkout Now
+                                        <i class="fa fa-arrow-circle-o-right mx-2 " aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            <?php
+            }
+
+            ?>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <?php include 'include/footer.php' ?>
+    <!--  JS Files -->
+    <script src='/CourierBD/assets/bootstrap/js/bootstrap.bundle.js'></script>
+    <script src='/CourierBD/assets/js/app.js'></script>
+</body>
+
+</html>

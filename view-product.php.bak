@@ -1,0 +1,107 @@
+
+<?php
+session_start();
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='/CourierBD/assets/bootstrap/css/bootstrap.min.css'>
+    <link rel=" stylesheet" href='/CourierBD/assets/css/style.css'>
+    <link rel="stylesheet" href='/CourierBD/assets/font-awesome/css/font-awesome.min.css'>
+
+    <title>CourierBD</title>
+    <link rel="shortcut icon" href=".CourierBD/assets/img/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+    <?php include 'include/header.php' ?>
+    <br><br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10">
+      <h4 class="bg-dark pt-2 pb-2 text-center text-light" style="">View Product</h4>
+             <br>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <?php 
+             include 'db/dbconnect.php';
+
+             $get_id = $_GET['id'];
+             
+             $product_query = "SELECT * FROM products WHERE id='$get_id'";
+              $query_run = mysqli_query($conn, $product_query);
+              $product =  mysqli_fetch_assoc($query_run);
+              
+?>
+                <div class="col-lg-4">
+          
+                  <img class="card-img-top" src="<?php echo $product['image'] ?>" alt="Card image cap">
+                  <div class="card-body">
+                  </div>
+                  <div class="card-body">
+                    <form action="#" method="post">
+                      <input type="hidden" value="<?php echo $get_id; ?>" name="get_id">
+                    <button type="submit" onclick='return checkdelete()' name="addCard" class='btn btn-dark'>Add to card</button>
+                    </form>
+                  </div>
+                </div>
+           
+                <div class="col-lg-4">
+                <h5 class="card-title text-dark ">Title: <?php echo $product['title'] ?></h5>
+                <h5 class="card-title text-dark ">Size: <?php echo $product['size'] ?>piece</h5>
+                <h5 class="card-title text-dark ">Height: <?php echo $product['length'] ?>cm</h5>
+                <h5 class="card-title text-dark ">Width: <?php echo $product['width'] ?>cm</h5>
+                <h5 class="card-title">Price: <?php echo $product['price'] ?> BDT</h5>
+                <hp class="card-title"><?php echo $product['description'] ?> </hp>
+                </div>
+
+               
+                <div class="col-lg-2"></div>
+            </div>
+      </div>
+      <div class="col-lg-1"></div>
+
+    </div>
+  </div>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<?php
+if(isset($_POST['addCard'])){
+  $UserID =  $_SESSION["UserID"];
+  
+  $product_id = $_POST['get_id'];
+  $user_id = $UserID;
+  $card_query = "INSERT INTO cards VALUES(NULL,'$product_id','$user_id')";
+  $run_query = mysqli_query($conn,$card_query);
+  if($run_query){
+    ?>
+      <META HTTP-EQUIV="Refresh" CONTENT="0; URL=http://localhost/CourierBD/product-card.php">
+
+    <?php
+  }else{
+    echo '<script>alert("This card already added")</script>';
+  }
+
+}
+
+?>
+
+    <?php include 'include/footer.php' ?>
+    <script>
+	function checkdelete(){
+			return confirm('Are you sure???');
+  }
+</script>
+    <!--  JS Files -->
+    <script src='/CourierBD/assets/bootstrap/js/bootstrap.bundle.js'></script>
+    <script src='/CourierBD/assets/js/app.js'></script>
+</body>
+
+</html>
