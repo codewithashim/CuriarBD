@@ -1,0 +1,50 @@
+
+
+.nabMenuBar{
+    color: #000000 !important;
+    font-size: 24px !important;
+}
+
+.nav-menu-item{
+    text-decoration: none;
+    color: #ffffff;
+    padding: .25rem 0rem; 
+    display: block;
+}
+
+.nav-menu-item:hover{
+    text-decoration: none;
+    color: #c7c5c8;
+    transition: 0.1s;
+}
+
+
+.sideNav{
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 55px;
+    left: -1px;
+    z-index: 9!important;
+    overflow-x: hidden;
+    padding-left: 10px;
+    padding-top: 0px;
+    transition: 0.5s;
+}
+
+#admin_root{
+    margin-left: 200px;
+    margin-top: 60px;
+}
+
+
+
+.modal_close{
+    position: relative;
+    top: -50px;
+    right: -380px;
+    cursor: pointer;
+    /* display: none; */
+}
+
+   
